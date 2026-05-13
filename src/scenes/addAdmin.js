@@ -67,9 +67,9 @@ addAdminScene.action('add_admin_confirm', async (ctx) => {
 
     const admins = adminCache.getAll().filter((a) => a.telegramId && a.telegramId !== ctx.from.id);
     for (const a of admins) {
-      await enqueue(() =>
-        ctx.telegram.sendMessage(a.telegramId, `👤 New admin added: ${label}`)
-      ).catch(() => {});
+      enqueue(() =>
+        ctx.telegram.sendMessage(a.telegramId, `👤 New admin added: ${label}`).catch(() => {})
+      );
     }
   } catch (err) {
     console.error('[addAdmin]', err.message);

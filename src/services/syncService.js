@@ -47,7 +47,7 @@ async function syncMediaPool(bot) {
   }
 
   const failRate = stale.length / all.length;
-  if (failRate > 0.5) {
+  if (failRate > 0.2) {
     console.warn(`[sync] ${stale.length}/${all.length} files failed (${Math.round(failRate * 100)}%) — looks like a token or connectivity issue, skipping deletion to avoid data loss`);
     return;
   }

@@ -72,9 +72,9 @@ removeAdminScene.action(/^rm_admin:(.+)$/, async (ctx) => {
 
   const remaining = adminCache.getAll().filter((a) => a.telegramId && a.telegramId !== ctx.from.id);
   for (const a of remaining) {
-    await enqueue(() =>
-      ctx.telegram.sendMessage(a.telegramId, `🗑 Admin removed: ${label}`)
-    ).catch(() => {});
+    enqueue(() =>
+      ctx.telegram.sendMessage(a.telegramId, `🗑 Admin removed: ${label}`).catch(() => {})
+    );
   }
 
   return leave(ctx, '↩️ Back to admin panel.');
